@@ -1,0 +1,120 @@
+graph TD
+    Start([EnemyChaseAStar.cs<br/>START]) --> Awake[Awake]
+    Awake --> GetAudio[Get EnemySFX component]
+    
+    GetAudio --> Update[Update - Every Frame]
+    
+    Update --> CalcDist[Calculate distance to player]
+    CalcDist --> DetermineState{Determine State}
+    
+    DetermineState -->|distance <= attackRange| SetAttack[newState = Attack]
+    DetermineState -->|distance <= detectionRadius| SetChase[newState = Chase]
+    DetermineState -->|distance > detectionRadius| SetPatrol[newState = Patrol]
+    
+    SetAttack --> CheckChange{State changed?}
+    SetChase --> CheckChange
+    SetPatrol --> CheckChange
+    
+    CheckChange -->|Yes| UpdateState[Update state variable]
+    UpdateState --> NotifyAudio[Notify audioController]
+    NotifyAudio --> IsPatrol{New state = Patrol?}
+    IsPatrol -->|Yes| ResetPath[Reset path & pathIndex]
+    IsPatrol -->|No| UpdateAnim
+    
+    CheckChange -->|No| UpdateAnim[UpdateAnimator]
+    ResetPath --> UpdateAnim
+    
+    UpdateAnim --> SetMoving[Set isMoving:<br/>Patrol & not waiting OR Chase]
+    SetMoving --> SetAttacking[Set isAttacking:<br/>state == Attack]
+    
+    SetAttacking --> UpdateFace[UpdateFacing]
+    
+    UpdateFace --> HasMove{lastMoveDirection.x != 0?}
+    HasMove -->|Yes| FlipByMove[flipX = moveDirection.x < 0]
+    HasMove -->|No| IsAttackState{state == Attack?}
+    IsAttackState -->|Yes| FlipToPlayer[flipX = player.x < enemy.x]
+    IsAttackState -->|No| ExecuteState
+    
+    FlipByMove --> ExecuteState{Execute State Behavior}
+    FlipToPlayer --> ExecuteState
+    
+    ExecuteState -->|Chase| ChaseFunc[KejarPlayer]
+    ExecuteState -->|Attack| AttackFunc[TryAttack]
+    ExecuteState -->|Patrol| PatrolFunc[Patrol]
+    
+    ChaseFunc --> ChaseStart[Convert positions to cells]
+    ChaseStart --> ChaseCalc[Call pathfinding.CariJalur<br/>every frame]
+    ChaseCalc --> ChaseReset[Reset pathIndex = 0]
+    ChaseReset --> ChaseMove[GerakAStar]
+    ChaseMove --> LoopUpdate[Loop to next Update]
+    
+    AttackFunc --> CheckCooldown{Time < lastAttack<br/>+ cooldown?}
+    CheckCooldown -->|Yes| LoopUpdate
+    CheckCooldown -->|No| GetHealth[Get PlayerHealth component]
+    GetHealth --> HasHealth{PlayerHealth exists?}
+    HasHealth -->|No| LoopUpdate
+    HasHealth -->|Yes| DoDamage[playerHealth.TakeDamage]
+    DoDamage --> RecordTime[lastAttackTime = Time.time]
+    RecordTime --> LoopUpdate
+    
+    PatrolFunc --> HasPatrolPoints{patrolPoints exist<br/>& length > 0?}
+    HasPatrolPoints -->|No| StopMoving[Set isMoving = false<br/>Return]
+    StopMoving --> LoopUpdate
+    
+    HasPatrolPoints -->|Yes| IsWaiting{isWaitingAtWaypoint?}
+    
+    IsWaiting -->|Yes| DecTimer[Decrease waypointWaitTimer]
+    DecTimer --> TimerDone{Timer <= 0?}
+    TimerDone -->|No| LoopUpdate
+    TimerDone -->|Yes| StopWait[isWaitingAtWaypoint = false]
+    StopWait --> NextWaypoint[patrolIndex++]
+    NextWaypoint --> CheckLoop{patrolIndex >= length?}
+    CheckLoop -->|Yes| ResetIndex[patrolIndex = 0]
+    CheckLoop -->|No| ClearPath[path = null]
+    ResetIndex --> ClearPath
+    ClearPath --> LoopUpdate
+    
+    IsWaiting -->|No| GetTarget[Get target waypoint position]
+    GetTarget --> ConvertCells[Convert to cell positions]
+    ConvertCells --> NeedPath{path == null OR<br/>pathIndex >= count?}
+    
+    NeedPath -->|Yes| CallPath[Call pathfinding.CariJalur]
+    CallPath --> ResetPathIndex[pathIndex = 0]
+    ResetPathIndex --> PathValid{path valid &<br/>count > 0?}
+    PathValid -->|No| SkipWaypoint[patrolIndex++<br/>Loop check<br/>Return]
+    SkipWaypoint --> LoopUpdate
+    
+    PathValid -->|Yes| MoveAStar[GerakAStar]
+    NeedPath -->|No| MoveAStar
+    
+    MoveAStar --> CheckArrival[Check distance to waypoint]
+    CheckArrival --> Arrived{distance < 0.2?}
+    Arrived -->|No| LoopUpdate
+    Arrived -->|Yes| StartWait[isWaitingAtWaypoint = true<br/>waypointWaitTimer = waypointWaitTime<br/>lastMoveDirection = zero]
+    StartWait --> LoopUpdate
+    
+    subgraph GerakAStar Function
+        GerakStart[GerakAStar START]
+        GerakStart --> PathCheck{path exists<br/>& count > 0?}
+        PathCheck -->|No| ResetMove1[lastMoveDirection = zero<br/>Return]
+        PathCheck -->|Yes| IndexCheck{pathIndex < count?}
+        IndexCheck -->|No| ResetMove2[lastMoveDirection = zero<br/>Return]
+        IndexCheck -->|Yes| GetTargetWorld[Get target world position<br/>from path pathIndex]
+        GetTargetWorld --> SaveOldPos[Save old position]
+        SaveOldPos --> MoveTowards[MoveTowards target<br/>with speed × deltaTime]
+        MoveTowards --> CalcDirection[Calculate lastMoveDirection<br/>= newPos - oldPos]
+        CalcDirection --> CheckDistance{Distance to target<br/>< 0.05?}
+        CheckDistance -->|Yes| IncIndex[pathIndex++]
+        CheckDistance -->|No| GerakEnd[GerakAStar END]
+        IncIndex --> GerakEnd
+    end
+    
+    LoopUpdate --> Update
+    
+    style Start fill:#e1f5ff
+    style Update fill:#fff3cd
+    style ChaseFunc fill:#ffeaa7
+    style AttackFunc fill:#ff7675
+    style PatrolFunc fill:#74b9ff
+    style GerakStart fill:#a29bfe
+    style ExecuteState fill:#fdcb6e

@@ -1,0 +1,79 @@
+graph TD
+    Start([AStarPathFinding.cs<br/>START]) --> MainFunc[CariJalur startCell, targetCell]
+    
+    MainFunc --> ClearCache[Clear nodeCache]
+    ClearCache --> CreateNodes[Create startNode & targetNode]
+    CreateNodes --> InitSets[Initialize:<br/>openSet = startNode<br/>closedSet = empty]
+    
+    InitSets --> LoopCheck{openSet.Count > 0?}
+    
+    LoopCheck -->|No| NoPath[Return null<br/>No path found]
+    LoopCheck -->|Yes| FindLowest[Find node with lowest fCost<br/>in openSet]
+    
+    FindLowest --> LoopNodes[Loop all nodes in openSet]
+    LoopNodes --> CompareF{fCost lower OR<br/>fCost same & hCost lower?}
+    CompareF -->|Yes| SetCurrent[Set as current node]
+    CompareF -->|No| NextNode[Check next node]
+    NextNode --> LoopNodes
+    
+    SetCurrent --> MoveNode[Remove from openSet<br/>Add to closedSet]
+    
+    MoveNode --> CheckTarget{current == target?}
+    
+    CheckTarget -->|Yes| Retrace[RetracePath]
+    Retrace --> RetraceLoop[Loop from end to start<br/>following parent]
+    RetraceLoop --> AddToPath[Add cellPos to path]
+    AddToPath --> ReversePath[Reverse path]
+    ReversePath --> ReturnPath[Return path List]
+    ReturnPath --> Success([PATH FOUND])
+    
+    CheckTarget -->|No| GetNeighbors[GetNeighbors current.cellPos]
+    
+    GetNeighbors --> NeighborLoop[Check 4 directions:<br/>Right, Left, Up, Down]
+    NeighborLoop --> HasTile{groundTilemap<br/>HasTile?}
+    HasTile -->|No| NextDir[Next direction]
+    HasTile -->|Yes| AddNeighbor[Add to neighbors list]
+    AddNeighbor --> NextDir
+    NextDir --> NeighborLoop
+    
+    NeighborLoop --> ProcessNeighbors[For each neighbor]
+    
+    ProcessNeighbors --> InClosed{In closedSet?}
+    InClosed -->|Yes| SkipNeighbor[Skip neighbor]
+    InClosed -->|No| CalcNewCost[newCost = current.gCost + 10]
+    
+    CalcNewCost --> CheckCost{newCost < neighbor.gCost<br/>OR not in openSet?}
+    
+    CheckCost -->|No| SkipNeighbor
+    CheckCost -->|Yes| UpdateNeighbor[Update neighbor:<br/>gCost = newCost<br/>hCost = GetDistance<br/>HitungFCost<br/>parent = current]
+    
+    UpdateNeighbor --> InOpenSet{In openSet?}
+    InOpenSet -->|No| AddToOpen[Add to openSet]
+    InOpenSet -->|Yes| SkipNeighbor
+    
+    AddToOpen --> SkipNeighbor
+    SkipNeighbor --> MoreNeighbors{More neighbors?}
+    MoreNeighbors -->|Yes| ProcessNeighbors
+    MoreNeighbors -->|No| LoopCheck
+    
+    NoPath --> End([END])
+    Success --> End
+    
+    subgraph Helper Functions
+        GetNode[GetNode cell]
+        GetNode --> InCache{In nodeCache?}
+        InCache -->|No| CreateNew[Create new Node<br/>Add to cache]
+        InCache -->|Yes| ReturnCached[Return cached node]
+        CreateNew --> ReturnCached
+        
+        GetDist[GetDistance a, b]
+        GetDist --> Manhattan[Manhattan Distance:<br/>10 × abs x1-x2 + abs y1-y2]
+    end
+    
+    style Start fill:#e1f5ff
+    style Success fill:#d4edda
+    style End fill:#d4edda
+    style NoPath fill:#f8d7da
+    style MainFunc fill:#fff3cd
+    style Retrace fill:#d1ecf1
+    style GetNeighbors fill:#d1ecf1

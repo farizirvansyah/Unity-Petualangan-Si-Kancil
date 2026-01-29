@@ -1,0 +1,24 @@
+graph TD
+    Start([Node.cs - Class Structure]) --> Constructor[Constructor: Node cellPos]
+    
+    Constructor --> InitPos[Store cellPos position]
+    
+    InitPos --> Properties[Node Properties]
+    
+    Properties --> PropCell[cellPos: Vector3Int<br/>Position in grid]
+    Properties --> PropG[gCost: int<br/>Distance from start]
+    Properties --> PropH[hCost: int<br/>Estimated distance to target]
+    Properties --> PropF[fCost: int<br/>Total cost G + H]
+    Properties --> PropParent[parent: Node<br/>Previous node in path]
+    
+    PropF --> Method[Method: HitungFCost]
+    
+    Method --> CalcF[Calculate: fCost = gCost + hCost]
+    
+    CalcF --> End([Node Ready for A* Algorithm])
+    
+    style Start fill:#e1f5ff
+    style End fill:#d4edda
+    style Constructor fill:#fff3cd
+    style Method fill:#fff3cd
+    style Properties fill:#f8f9fa
