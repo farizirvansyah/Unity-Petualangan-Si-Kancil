@@ -1,0 +1,44 @@
+graph TD
+    %% Definisi Style (Sesuai gaya sebelumnya)
+    classDef tealStyle fill:#008B8B,stroke:#006666,color:white,rx:15,ry:15;
+    classDef blueStyle fill:#4682B4,stroke:#36648B,color:white,rx:5,ry:5;
+    linkStyle default stroke-width:2px,fill:none,stroke:black;
+
+    %% Alur Flowchart
+    Start(Start <br> CariJalur):::tealStyle --> Init[Inisialisasi: <br> - Buat StartNode & TargetNode <br> - OpenSet berisi StartNode <br> - ClosedSet Kosong]:::blueStyle
+
+    Init --> LoopCheck{OpenSet > 0?}
+
+    %% Jalur Tidak Ditemukan
+    LoopCheck -- False / Kosong --> NoPath(End <br> Jalur Tidak Ditemukan):::tealStyle
+
+    %% Jalur Utama
+    LoopCheck -- True --> FindLowest[Cari Node dengan <br> fCost Terendah di OpenSet]:::blueStyle
+
+    FindLowest --> SetCurrent[Set Current Node <br> Pindahkan dari OpenSet ke ClosedSet]:::blueStyle
+
+    SetCurrent --> IsTarget{Current == Target?}
+
+    %% Jalur Sukses (Target Ditemukan)
+    IsTarget -- True --> Retrace[Retrace Path: <br> Telusuri Parent dari <br> Target kembali ke Start]:::blueStyle
+    Retrace --> Reverse[Balik Urutan List Jalur]:::blueStyle
+    Reverse --> Success(End <br> Jalur Ditemukan):::tealStyle
+
+    %% Eksplorasi Tetangga
+    IsTarget -- False --> GetNeighbor[Ambil 4 Tetangga <br> Atas, Bawah, Kiri, Kanan]:::blueStyle
+
+    GetNeighbor --> LoopNeighbor{Cek Tetangga}
+
+    LoopNeighbor -- Selesai --> LoopCheck
+    LoopNeighbor -- Ada --> CheckWalkable{Bisa Dilewati <br> & Tidak di ClosedSet?}
+
+    CheckWalkable -- No --> LoopNeighbor
+    CheckWalkable -- Yes --> CalcCost[Hitung Cost: <br> newCost = Current.gCost + Jarak]:::blueStyle
+
+    CalcCost --> CheckBetter{newCost < Neighbor.gCost <br> ATAU <br> Tidak di OpenSet?}
+
+    CheckBetter -- No --> LoopNeighbor
+    CheckBetter -- Yes --> UpdateNode[Update Neighbor: <br> - gCost = newCost <br> - hCost = Jarak ke Target <br> - Hitung fCost <br> - Parent = Current]:::blueStyle
+
+    UpdateNode --> AddOpen[Tambahkan ke OpenSet <br> (Jika belum ada)]:::blueStyle
+    AddOpen --> LoopNeighbor
