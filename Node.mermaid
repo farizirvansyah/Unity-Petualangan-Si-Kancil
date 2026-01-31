@@ -1,0 +1,18 @@
+graph TD
+    %% Definisi Node dan Style
+    Start(Start):::tealStyle --> InitPos[Menerima Input Posisi Grid <br> Vector3Int cellPos]:::blueStyle
+    
+    InitPos --> InitProp[Inisialisasi Properti Awal: <br> - Set cellPos = Input Posisi <br> - Set gCost = 0 <br> - Set hCost = 0 <br> - Set fCost = 0 <br> - Set parent = null]:::blueStyle
+    
+    InitProp --> MethodCall[Pemanggilan Fungsi <br> HitungFCost]:::blueStyle
+    
+    MethodCall --> CalcProcess[Proses Kalkulasi: <br> fCost = gCost + hCost]:::blueStyle
+    
+    CalcProcess --> End(End <br> Node Siap Digunakan A*):::tealStyle
+
+    %% Definisi Styling agar mirip dengan gambar Anda
+    classDef tealStyle fill:#008B8B,stroke:#006666,color:white,rx:15,ry:15;
+    classDef blueStyle fill:#4682B4,stroke:#36648B,color:white,rx:5,ry:5;
+    
+    %% Pengaturan Link agar siku-siku
+    linkStyle default stroke-width:2px,fill:none,stroke:black;
