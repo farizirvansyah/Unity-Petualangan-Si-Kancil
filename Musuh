@@ -1,0 +1,59 @@
+graph TD
+    %% Definisi Style
+    classDef tealStyle fill:#008B8B,stroke:#006666,color:white,rx:15,ry:15;
+    classDef blueStyle fill:#4682B4,stroke:#36648B,color:white,rx:5,ry:5;
+    linkStyle default stroke-width:2px,fill:none,stroke:black;
+
+    %% Awal
+    Start("Start <br> EnemyChaseAStar"):::tealStyle --> Awake["Awake: <br> Inisialisasi Audio & Komponen"]:::blueStyle
+
+    %% Loop Update
+    Awake --> UpdateLoop("Update (Looping)"):::blueStyle
+    
+    UpdateLoop --> CalcDist["Hitung Jarak ke Player"]:::blueStyle
+    
+    CalcDist --> CheckState{"Tentukan State"}
+
+    %% Percabangan State
+    CheckState -- "Jarak <= AttackRange" --> SetAttack["Set State = Attack"]:::blueStyle
+    CheckState -- "Jarak <= DetectionRadius" --> SetChase["Set State = Chase"]:::blueStyle
+    CheckState -- "Jarak > DetectionRadius" --> SetPatrol["Set State = Patrol"]:::blueStyle
+
+    %% Sinkronisasi Visual
+    SetAttack --> UpdateVisual["Update Animasi, Audio, <br> & Arah Hadap (FlipX)"]:::blueStyle
+    SetChase --> UpdateVisual
+    SetPatrol --> UpdateVisual
+
+    %% Eksekusi Logika
+    UpdateVisual --> ExecuteState{"Eksekusi Logika State"}
+
+    %% Logika Attack
+    ExecuteState -- Attack --> CheckCooldown{"Cooldown Selesai?"}
+    CheckCooldown -- Yes --> DoAttack["Kurangi HP Player <br> Reset Cooldown"]:::blueStyle
+    CheckCooldown -- No --> EndLoop
+
+    %% Logika Chase
+    ExecuteState -- Chase --> GetPathPlayer["Panggil A* CariJalur <br> (Musuh ke Player)"]:::blueStyle
+    GetPathPlayer --> CallMove
+
+    %% Logika Patrol
+    ExecuteState -- Patrol --> CheckWait{"Sedang Menunggu?"}
+    CheckWait -- Yes --> TimerLogic["Kurangi Timer Tunggu"]:::blueStyle
+    TimerLogic --> EndLoop
+    
+    CheckWait -- No --> CheckWaypoint{"Punya Waypoint?"}
+    CheckWaypoint -- Yes --> GetPathPatrol["Panggil A* CariJalur <br> (Musuh ke Waypoint)"]:::blueStyle
+    CheckWaypoint -- No --> EndLoop
+    GetPathPatrol --> CallMove
+
+    %% Shared Movement Function
+    CallMove --> MoveFunc("Fungsi GerakAStar: <br> MoveTowards ke Node Selanjutnya"):::blueStyle
+    MoveFunc --> CheckArrive{"Sampai di Node?"}
+    
+    CheckArrive -- Yes --> NextIndex["Index Jalur ++"]:::blueStyle
+    CheckArrive -- No --> EndLoop
+    
+    DoAttack --> EndLoop
+    NextIndex --> EndLoop
+    
+    EndLoop("End Frame <br> Kembali ke Update"):::tealStyle --> UpdateLoop
