@@ -1,0 +1,85 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d12e9ad36f931640bb8a373dacee363, type: 3}
+  m_Name: Level_3_Data
+  m_EditorClassIdentifier: Assembly-CSharp::LevelData
+  levelIndex: 3
+  judulLevel: Tipuan Kancil
+  prologSlides:
+  - image: {fileID: 21300000, guid: fbb89fbcad2a23647a5ef1d8f74091a9, type: 3}
+    lines:
+    - text: Tipuan Kancil
+      voice: {fileID: 8300000, guid: 4552de3b37632b148b98f710a36bd0f0, type: 3}
+  - image: {fileID: 21300000, guid: 0c77066ad999a064f8e28fd2abc64ee3, type: 3}
+    lines:
+    - text: Kancil memimpin pelarian untuk mencapai suatu tempat, tempat yang dimaksud
+        adalah tempat dimana kotak ajaib berada. Rusa yang tidak mengetahuinya hanya
+        bisa mengikuti Si Kancil.
+      voice: {fileID: 8300000, guid: 59e8de1539917b34b966cb9d73a4f470, type: 3}
+    - text: "Kancil: \u201CHarimau\u2026 Aku tidak mengerti.\u201D"
+      voice: {fileID: 8300000, guid: 034987d589313d84a8dc5b04d56790c9, type: 3}
+    - text: "Harimau: \u201CBicara apa Kamu Kancil.\u201D"
+      voice: {fileID: 8300000, guid: 171671b1a89d5f7459c4adf1180ff97b, type: 3}
+  epilogSlides:
+  - image: {fileID: 21300000, guid: 9d078c01d45db4840b86d09eefbb0061, type: 3}
+    lines:
+    - text: Tepat di saat kritis itu, mereka telah sampai menuju kotak ajaib. Kancil
+        bertanya dengan wajah polos yang dibuat-buat.
+      voice: {fileID: 8300000, guid: d95a559be073aaf429fbe5c13c63bd49, type: 3}
+    - text: "Kancil: \u201CTunggu sebentar Harimau.\u201D"
+      voice: {fileID: 8300000, guid: 651ca1c6155e2fb459a42044fc43c3a3, type: 3}
+    - text: "Harimau: \u201CAda apa?\u201D"
+      voice: {fileID: 8300000, guid: 899990d6567961045a2c9ac6b159373a, type: 3}
+    - text: "Kancil: \"Aku dengar\u2026 kamu terjebak di dalam kotak ajaib, apakah
+        itu benar?\""
+      voice: {fileID: 8300000, guid: 10418f8e7798ba440b0719a1b71e8fc0, type: 3}
+    - text: "Harimau: \u201CKalau iya, memangnya kenapa?\u201D"
+      voice: {fileID: 8300000, guid: 727e10d533c814f4ca7b42ee9f1eab0f, type: 3}
+    - text: 'Kancil: "Aku bingung. Siapa yang di dalam? Siapa yang di luar? Bagaimana
+        kejadian awalnya?"'
+      voice: {fileID: 8300000, guid: adabb8302ee09da4bbfc8cfa52a89383, type: 3}
+    - text: Harimau menjadi tidak sabar dan marah karena Kancil tampak begitu lambat
+        berpikir.
+      voice: {fileID: 8300000, guid: 7026c5ab0a491944bb0f1c69911e2e08, type: 3}
+    - text: 'Harimau: "Dasar bodoh! Biar kutunjukkan!"'
+      voice: {fileID: 8300000, guid: bfef13bd5eed2cc4b9509379f22038a5, type: 3}
+    - text: Demi membuat Kancil paham, Harimau setuju untuk melakukan reka ulang.
+        Ia masuk kembali ke dalam kotak kayu itu.
+      voice: {fileID: 8300000, guid: 00b3a7023de4a7d419d34178dde5963e, type: 3}
+  - image: {fileID: 21300000, guid: edc6bc1d3769fac459f396daf2430f6d, type: 3}
+    lines:
+    - text: 'Kancil: "Jadi posisinya begini?"'
+      voice: {fileID: 8300000, guid: c4411b3be9c4a7c44af0bad0a6f3c402, type: 3}
+    - text: 'Harimau: "Ya!"'
+      voice: {fileID: 8300000, guid: bff6e55c93fabcd40850e9a7add99ce6, type: 3}
+    - text: 'Kancil: "Lalu pintunya tertutup?"'
+      voice: {fileID: 8300000, guid: ff595d973b6cb7146a308f1c72d34177, type: 3}
+    - text: 'Harimau: "Ya, tutup pintunya!"'
+      voice: {fileID: 8300000, guid: f0cf3a858cac31c499abeb3051d840b6, type: 3}
+  - image: {fileID: 21300000, guid: b28ca5304a35976449eb934ae2bd13d6, type: 3}
+    lines:
+    - text: Darr! Kancil membanting pintu kotak itu hingga terkunci rapat kembali.
+        Harimau tersadar, ia telah masuk perangkap yang sama untuk kedua kalinya.
+        Ia mencoba membuka pintu itu, tetapi gagal.
+      voice: {fileID: 8300000, guid: 6eebfa4943d492f40bf3486016fc2a97, type: 3}
+    - text: Kancil tertawa melihat Harimau yang kembali terkurung.
+      voice: {fileID: 8300000, guid: 2bf5720c5649ad44d973aac28953b050, type: 3}
+    - text: 'Kancil: "Kenapa aku harus menolong hewan yang tak tahu balas budi?"'
+      voice: {fileID: 8300000, guid: 6600a81cbd58aa84492b222f9f759332, type: 3}
+    - text: Harimau mengaum penuh amarah, menyadari dirinya telah tertipu. Kancil
+        kemudian mengajak Rusa untuk segera lari meninggalkan Harimau yang kembali
+        menunggu nasib di dalam kotak ajaib itu.
+      voice: {fileID: 8300000, guid: 8c69a43b82112784d9a9a983fc39b978, type: 3}
+  - image: {fileID: 21300000, guid: 99b284aa32ae1ec4699293dbefb2fc56, type: 3}
+    lines:
+    - text: 'Pesan Moral: Kecerdikan dan ketenangan mampu mengalahkan kekuatan fisik.'
+      voice: {fileID: 8300000, guid: 78a852aa4d427254fb00731e8984c2a8, type: 3}

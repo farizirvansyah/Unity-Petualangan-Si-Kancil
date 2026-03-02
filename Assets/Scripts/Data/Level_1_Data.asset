@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d12e9ad36f931640bb8a373dacee363, type: 3}
+  m_Name: Level_1_Data
+  m_EditorClassIdentifier: Assembly-CSharp::LevelData
+  levelIndex: 1
+  judulLevel: Hutan Yang Kering
+  prologSlides:
+  - image: {fileID: 21300000, guid: 05687640c04d4254e86efdec21370df8, type: 3}
+    lines:
+    - text: Hutan yang kering
+      voice: {fileID: 8300000, guid: 5d02f9705294eeb49b1c16643b9edddc, type: 3}
+  - image: {fileID: 21300000, guid: 4be897f8360359e4bbd7b408a5747785, type: 3}
+    lines:
+    - text: Di tanah Nusantara, di mana langit berkilau dan hutan berbisik rahasia
+        kepada angin, hiduplah seekor Kancil yang sedang kelaparan.
+      voice: {fileID: 8300000, guid: 86c67e061a6f99545a9593f42e0673d1, type: 3}
+    - text: Namun sayangnya, musim kemarau panjang melanda hutan. Sungai menyusut,
+        pohon-pohon meranggas, dan makanan menjadi sangat langka.
+      voice: {fileID: 8300000, guid: 568b98586c536d14b87ac5eda69bb051, type: 3}
+    - text: 'Kancil: "Aduh... perutku berbunyi terus dari tadi."'
+      voice: {fileID: 8300000, guid: cec297ef7555c454ca542598884b7b86, type: 3}
+    - text: 'Kancil: "Panas sekali hari ini. Kalau begini terus, aku bisa pingsan
+        sebelum menemukan makanan."'
+      voice: {fileID: 8300000, guid: 329a9147cbe23cd4fac37af614c02f71, type: 3}
+    - text: Kancil menyeret kakinya yang lelah hingga tiba di tepi hutan. Tiba-tiba,
+        matanya terbelalak. Di kejauhan, ia melihat warna hijau yang segar.
+      voice: {fileID: 8300000, guid: 8a5bd68f1323d414eb2476f5e548128b, type: 3}
+  - image: {fileID: 21300000, guid: 5145954e8e839e64c80f308376f353b8, type: 3}
+    lines:
+    - text: 'Kancil: "Tunggu... bau apa ini? Segar sekali!"'
+      voice: {fileID: 8300000, guid: 7afad12425def3d4f9c18051c0b8aad1, type: 3}
+    - text: 'Kancil: "Itu Ladang Pak Tani! Dan lihat... banyak sekali mentimun yang
+        gemuk dan segar! Wah, rezeki memang tak ke mana!!"'
+      voice: {fileID: 8300000, guid: 89b5ef01750be6341afff832e915b0e8, type: 3}
+    - text: Tanpa berpikir dua kali, Kancil menyelinap masuk dan memakan mentimun
+        untuk menghilangkan lapar dan dahaganya.
+      voice: {fileID: 8300000, guid: d6edd0b67cbb676438ad8aced9d2c735, type: 3}
+  epilogSlides:
+  - image: {fileID: 21300000, guid: 28c27a8790a251047acbe05233e2cc45, type: 3}
+    lines:
+    - text: Setelah kenyang, ia pun kembali ke hutan dengan perasaan puas. Namun,
+        petualangan sesungguhnya baru saja dimulai.
+      voice: {fileID: 8300000, guid: 879dd1a4a48dd4f43b7cfd8c9eff8721, type: 3}
+    - text: 'Harimau: "Rawr! Aku menemukan mangsaku"'
+      voice: {fileID: 8300000, guid: 1421965f01cf270498175407ffde59e4, type: 3}
+  - image: {fileID: 21300000, guid: b5531abd79021564ca5f10518540803f, type: 3}
+    lines:
+    - text: 'Pesan Moral: Janganlah kamu mencuri, atau malapetaka akan menghampirimu.'
+      voice: {fileID: 8300000, guid: 136dd5d335327674081adfc7880f6c20, type: 3}

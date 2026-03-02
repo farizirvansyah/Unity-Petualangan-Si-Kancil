@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d12e9ad36f931640bb8a373dacee363, type: 3}
+  m_Name: Level_2_Data
+  m_EditorClassIdentifier: Assembly-CSharp::LevelData
+  levelIndex: 2
+  judulLevel: Pengejaran Harimau
+  prologSlides:
+  - image: {fileID: 4065723015641392369, guid: fa57774839b26ce449dccfc670c2f0d8, type: 3}
+    lines:
+    - text: Pengejaran Harimau
+      voice: {fileID: 8300000, guid: e4f0cb9e6eb34be4bad3737ff22d24be, type: 3}
+  - image: {fileID: 21300000, guid: b3a0ea23a119d7f40ab8e9d1fa663866, type: 3}
+    lines:
+    - text: Gawat! Kancil terlalu puas hingga lupa akan bahaya hutan.
+      voice: {fileID: 8300000, guid: ba37d18077c1aa14a87235549cd2b382, type: 3}
+    - text: 'Kancil: "Tidak... jangan memakan aku."'
+      voice: {fileID: 8300000, guid: 4f9b02fedf98a554b916c1c2b7922693, type: 3}
+  epilogSlides:
+  - image: {fileID: 21300000, guid: 3952b1338b120af4fb981c9d975ccdec, type: 3}
+    lines:
+    - text: "Rusa: \u201CHey Kancil, sini sembunyi.\u201D"
+      voice: {fileID: 8300000, guid: f7969f2697890204bab22d9610d3d474, type: 3}
+    - text: "Kancil: \u201CAhh Rusa, Kamu mengejutkan Aku.\u201D"
+      voice: {fileID: 8300000, guid: c4cc040f9e320684b842f6c40e58c67f, type: 3}
+  - image: {fileID: 21300000, guid: 0e732a794cfa15e4fbf76f9c144a0bc4, type: 3}
+    lines:
+    - text: "Rusa: \u201CKancil, apakah kamu sedang dikejar oleh Harimau?\u201D"
+      voice: {fileID: 8300000, guid: 0f77afaa1c30df84ab3083227bfcbb24, type: 3}
+    - text: "Kancil: \u201CIya Rusa, memangnya kenapa?\u201D"
+      voice: {fileID: 8300000, guid: 6d93498d353092e46b5266f9964b763e, type: 3}
+    - text: "Rusa: \u201CKancil, maafkan Aku.\u201D"
+      voice: {fileID: 8300000, guid: b3beead976a8eb746a13553d4d8e5c51, type: 3}
+    - text: "Kancil: \u201CKenapa Kamu minta maaf, memangnya kenapa?\u201D"
+      voice: {fileID: 8300000, guid: eab2790ef77a24d45b2d447ffde3245e, type: 3}
+    - text: "Rusa: \u201CAku terpisah dari kawananku, lalu Aku melihat Harimau di
+        dalam kotak.\u201D"
+      voice: {fileID: 8300000, guid: 03d6c41da082ec945a20487aaf1b4981, type: 3}
+    - text: "Rusa: \u201CDia merayuku dan berjanji tidak akan memangsaku jika aku
+        membantunya. Namun dia berbohong! Dia mencoba untuk memangsaku\u201D"
+      voice: {fileID: 8300000, guid: 578a821b91a885544a2b97ef92a93193, type: 3}
+  - image: {fileID: 21300000, guid: 60800ad395085754fb786e2d20be5cee, type: 3}
+    lines:
+    - text: "Harimau: \u201CDisini kalian rupanya.\u201D"
+      voice: {fileID: 8300000, guid: 863a892bbba09354dbfaf84ab73d0764, type: 3}
+    - text: "Rusa: \u201CLari Kancil! Harimau datang kemari!!\u201D"
+      voice: {fileID: 8300000, guid: 47ef29389b36ab14e92e45a0c4a19265, type: 3}
+  - image: {fileID: 21300000, guid: 60bcd7ca30ac08b4f956a0a16116746c, type: 3}
+    lines:
+    - text: 'Pesan Moral: Berhati-hatilah dalam memberikan kepercayaan, terutama
+        kepada musuh.'
+      voice: {fileID: 8300000, guid: fdd1d5fbd07f14147972e80ae46b8b73, type: 3}
